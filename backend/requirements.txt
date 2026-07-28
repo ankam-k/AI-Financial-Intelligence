@@ -1,0 +1,10 @@
+# Runtime dependencies — Sprint 1 (V1 MVP)
+#
+# Deliberately small. PostgreSQL, Alembic, Argon2, and Ollama clients arrive
+# in the sprints that need them (see ADR-014).
+
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.32,<1.0
+sqlalchemy>=2.0.36,<2.1
+pydantic>=2.9,<3.0
+pydantic-settings>=2.6,<3.0
