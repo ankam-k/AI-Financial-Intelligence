@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/organic-d6e2c841-5da7-4830-a6f0-4d98a3fc81cf/styles.css">
+  <script src="_ds/organic-d6e2c841-5da7-4830-a6f0-4d98a3fc81cf/_ds_bundle.js"></script>
+  <script src="store.js"></script>
+  <style>
+    body { margin: 0; }
+    a { color: var(--color-accent-700); }
+    a:hover { color: var(--color-accent-800); }
+  </style>
+</helmet>
+<div style="background:var(--color-bg); color:var(--color-text); min-height:100vh;">
+
+  <nav class="nav" style="max-width:1180px; margin:0 auto; padding:var(--space-4) var(--space-4); flex-wrap:wrap;">
+    <span class="nav-brand">Fieldbook</span>
+    <a href="#workflow">How it works</a>
+    <a href="#principles">Principles</a>
+    <a href="Login.dc.html">Sign in</a>
+    <a href="Signup.dc.html" class="btn btn-primary">Start tracking</a>
+  </nav>
+
+  <section style="max-width:1180px; margin:0 auto; padding:clamp(48px,8vw,110px) var(--space-4) clamp(40px,6vw,72px); display:grid; gap:var(--space-4); justify-items:start;">
+    <span class="tag tag-accent-2">Evidence-first, not a chatbot</span>
+    <h1 style="font-size:clamp(38px,6vw,64px); max-width:16ch; text-wrap:pretty;">Understand your financial behavior.</h1>
+    <p style="font-size:18px; max-width:56ch; opacity:0.85; text-wrap:pretty;">Record your spending, daily habits and life events. Fieldbook builds a longitudinal history from what you enter — then surfaces patterns that are statistically supported by your own data, with the evidence attached.</p>
+    <div style="display:flex; gap:var(--space-3); flex-wrap:wrap; margin-top:var(--space-2);">
+      <a href="Signup.dc.html" class="btn btn-primary" style="padding:14px 26px; font-size:15px;">Start tracking<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="Login.dc.html" class="btn btn-secondary" style="padding:14px 26px; font-size:15px;">Sign in</a>
+    </div>
+    <p style="font-size:12px; opacity:0.55; margin-top:var(--space-1);">No demo mode. No sample dashboard. Your account starts with your real, empty history.</p>
+  </section>
+
+  <section id="workflow" style="background:var(--color-surface); padding:clamp(48px,7vw,88px) var(--space-4);">
+    <div style="max-width:1180px; margin:0 auto;">
+      <h6 style="color:var(--color-accent-700);">The product loop</h6>
+      <h2 style="max-width:22ch; margin-bottom:var(--space-6);">Record → build history → analyze → discover → inspect evidence.</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:var(--space-4);">
+        <div class="card elev-sm" style="background:var(--color-bg);">
+          <div class="card-kicker">01 · Record</div>
+          <div class="card-title">Expenses, check-ins, life events</div>
+          <p class="card-body">Fast entry for spending, daily habits and the context surrounding them — travel, a new job, an exam period.</p>
+        </div>
+        <div class="card elev-sm" style="background:var(--color-bg);">
+          <div class="card-kicker">02 · Build history</div>
+          <div class="card-title">One longitudinal timeline</div>
+          <p class="card-body">Every record joins a single chronological history — the raw material any analysis depends on.</p>
+        </div>
+        <div class="card elev-sm" style="background:var(--color-bg);">
+          <div class="card-kicker">03 · Analyze</div>
+          <div class="card-title">Statistical review, not guesswork</div>
+          <p class="card-body">Once enough history exists, the analysis engine tests for relationships — it doesn't assume them.</p>
+        </div>
+        <div class="card elev-sm" style="background:var(--color-bg);">
+          <div class="card-kicker">04 · Understand</div>
+          <div class="card-title">Insights with evidence attached</div>
+          <p class="card-body">Every validated pattern links to the observations, sample size and statistical result behind it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="principles" style="max-width:1180px; margin:0 auto; padding:clamp(48px,7vw,88px) var(--space-4); display:grid; grid-template-columns:minmax(240px,1fr) minmax(280px,1.4fr); gap:var(--space-6);">
+    <div>
+      <h6 style="color:var(--color-accent-700);">Evidence-first</h6>
+      <h2 style="text-wrap:pretty;">Association, not advice.</h2>
+      <p style="opacity:0.8; max-width:46ch;">An AI layer helps you ask questions in plain language — but it never invents a financial fact. It only renders what the analysis engine has already validated against your history.</p>
+    </div>
+    <div style="display:grid; gap:var(--space-2);">
+      <div class="card" style="flex-direction:row; align-items:center; gap:var(--space-3);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-700)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><polyline points="5 13 10 18 19 7"/></svg>
+        <p class="card-body" style="margin:0;">Insights are only shown once your history clears the evidence threshold — never before.</p>
+      </div>
+      <div class="card" style="flex-direction:row; align-items:center; gap:var(--space-3);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-700)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><polyline points="5 13 10 18 19 7"/></svg>
+        <p class="card-body" style="margin:0;">Every finding links to its underlying observations, sample size and statistical result.</p>
+      </div>
+      <div class="card" style="flex-direction:row; align-items:center; gap:var(--space-3);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-700)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><polyline points="5 13 10 18 19 7"/></svg>
+        <p class="card-body" style="margin:0;">Language stays in the realm of association and recorded history — never causation or forecasting.</p>
+      </div>
+      <div class="card" style="flex-direction:row; align-items:center; gap:var(--space-3);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-700)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><polyline points="5 13 10 18 19 7"/></svg>
+        <p class="card-body" style="margin:0;">No demo accounts, no sample data — what you see is only what you've recorded.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--color-surface); padding:clamp(48px,7vw,88px) var(--space-4);">
+    <div style="max-width:1180px; margin:0 auto;">
+      <h6 style="color:var(--color-accent-700);">What you can do</h6>
+      <h2 style="margin-bottom:var(--space-6);">Six modules, one history.</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:var(--space-4);">
+        <div class="card elev-sm" style="background:var(--color-bg);"><div class="card-title">Expenses</div><p class="card-body">Log spending in seconds — amount, category, merchant, date.</p></div>
+        <div class="card elev-sm" style="background:var(--color-bg);"><div class="card-title">Check-in</div><p class="card-body">A 10–15 second daily habit check — sleep, stress, exercise, work mode.</p></div>
+        <div class="card elev-sm" style="background:var(--color-bg);"><div class="card-title">Life & Context</div><p class="card-body">Record the events around your finances — travel, a move, a new job.</p></div>
+        <div class="card elev-sm" style="background:var(--color-bg);"><div class="card-title">History</div><p class="card-body">Every record, unified in one chronological timeline.</p></div>
+        <div class="card elev-sm" style="background:var(--color-bg);"><div class="card-title">Insights</div><p class="card-body">Validated patterns in your own history, once enough exists.</p></div>
+        <div class="card elev-sm" style="background:var(--color-bg);"><div class="card-title">Explore</div><p class="card-body">Ask plain-language questions grounded in your recorded data.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1180px; margin:0 auto; padding:clamp(56px,8vw,110px) var(--space-4); text-align:left; display:grid; gap:var(--space-4); justify-items:start;">
+    <h2 style="max-width:18ch;">Start with your own history — not a demo.</h2>
+    <a href="Signup.dc.html" class="btn btn-primary" style="padding:14px 26px; font-size:15px;">Start tracking<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </section>
+
+  <footer style="border-top:1px solid var(--color-divider); padding:var(--space-6) var(--space-4);">
+    <div style="max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:var(--space-3); font-size:13px; opacity:0.6;">
+      <span>Fieldbook — evidence-first financial intelligence.</span>
+      <span>© 2026 Fieldbook</span>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+</body>
+</html>

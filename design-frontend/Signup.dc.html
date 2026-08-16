@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/organic-d6e2c841-5da7-4830-a6f0-4d98a3fc81cf/styles.css">
+  <script src="_ds/organic-d6e2c841-5da7-4830-a6f0-4d98a3fc81cf/_ds_bundle.js"></script>
+  <script src="store.js"></script>
+  <style>body { margin: 0; } a { color: var(--color-accent-700); } a:hover { color: var(--color-accent-800); }</style>
+</helmet>
+<div style="background:var(--color-bg); color:var(--color-text); min-height:100vh; display:flex; flex-direction:column;">
+  <nav class="nav" style="max-width:1180px; width:100%; margin:0 auto; box-sizing:border-box;">
+    <a href="Landing.dc.html" class="nav-brand" style="text-decoration:none; color:inherit;">Fieldbook</a>
+  </nav>
+  <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:var(--space-4) var(--space-4) var(--space-8);">
+    <form onSubmit="{{ onSubmit }}" style="width:100%; max-width:420px; display:grid; gap:var(--space-3);">
+      <div>
+        <h2 style="margin-bottom:4px;">Create your account</h2>
+        <p style="opacity:0.7; font-size:14px; margin:0;">Your history starts empty — nothing is pre-filled.</p>
+      </div>
+
+      <div class="field">
+        <label for="su-name">Display name</label>
+        <input class="input" id="su-name" placeholder="Your name" value="{{ name }}" onChange="{{ onName }}" autocomplete="name" />
+        <sc-if value="{{ errors.name }}"><p style="color:var(--color-accent-800); font-size:12px; margin:4px 0 0;">{{ errors.name }}</p></sc-if>
+      </div>
+      <div class="field">
+        <label for="su-email">Email</label>
+        <input class="input" id="su-email" type="email" placeholder="you@email.com" value="{{ email }}" onChange="{{ onEmail }}" autocomplete="email" />
+        <sc-if value="{{ errors.email }}"><p style="color:var(--color-accent-800); font-size:12px; margin:4px 0 0;">{{ errors.email }}</p></sc-if>
+      </div>
+      <div class="field">
+        <label for="su-pass">Password</label>
+        <input class="input" id="su-pass" type="password" placeholder="At least 6 characters" value="{{ password }}" onChange="{{ onPassword }}" autocomplete="new-password" />
+        <sc-if value="{{ errors.password }}"><p style="color:var(--color-accent-800); font-size:12px; margin:4px 0 0;">{{ errors.password }}</p></sc-if>
+      </div>
+      <div class="field">
+        <label for="su-confirm">Confirm password</label>
+        <input class="input" id="su-confirm" type="password" placeholder="Repeat your password" value="{{ confirm }}" onChange="{{ onConfirm }}" autocomplete="new-password" />
+        <sc-if value="{{ errors.confirm }}"><p style="color:var(--color-accent-800); font-size:12px; margin:4px 0 0;">{{ errors.confirm }}</p></sc-if>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" disabled="{{ loading }}" style="justify-content:center; padding:12px; margin-top:var(--space-1);">{{ submitLabel }}</button>
+      <p style="text-align:center; font-size:14px; margin:0;">Already have an account? <a href="Login.dc.html">Sign in</a></p>
+    </form>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+class Component extends DCLogic {
+  state = { name: '', email: '', password: '', confirm: '', errors: {}, loading: false };
+
+  componentDidMount() {
+    if (window.Store && Store.Session.isAuthed()) {
+      window.location.href = Store.Onboarding.isComplete() ? 'Overview.dc.html' : 'Onboarding.dc.html';
+    }
+  }
+
+  validate() {
+    const errors = {};
+    if (!this.state.name.trim()) errors.name = 'Enter your name.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.state.email)) errors.email = 'Enter a valid email address.';
+    if (this.state.password.length < 6) errors.password = 'Password must be at least 6 characters.';
+    if (this.state.confirm !== this.state.password) errors.confirm = 'Passwords do not match.';
+    return errors;
+  }
+
+  renderVals() {
+    return {
+      name: this.state.name, email: this.state.email, password: this.state.password, confirm: this.state.confirm,
+      errors: this.state.errors, loading: this.state.loading,
+      submitLabel: this.state.loading ? 'Creating account…' : 'Create account',
+      onName: e => this.setState({ name: e.target.value }),
+      onEmail: e => this.setState({ email: e.target.value }),
+      onPassword: e => this.setState({ password: e.target.value }),
+      onConfirm: e => this.setState({ confirm: e.target.value }),
+      onSubmit: e => {
+        e.preventDefault();
+        const errors = this.validate();
+        if (Object.keys(errors).length) { this.setState({ errors }); return; }
+        this.setState({ errors: {}, loading: true });
+        setTimeout(() => {
+          Store.Session.signup(this.state.name.trim(), this.state.email);
+          window.location.href = 'Onboarding.dc.html';
+        }, 500);
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

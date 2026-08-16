@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/organic-d6e2c841-5da7-4830-a6f0-4d98a3fc81cf/styles.css">
+  <script src="_ds/organic-d6e2c841-5da7-4830-a6f0-4d98a3fc81cf/_ds_bundle.js"></script>
+  <script src="store.js"></script>
+  <style>body { margin: 0; } a { color: var(--color-accent-700); } a:hover { color: var(--color-accent-800); }</style>
+</helmet>
+<div style="display:flex; min-height:100vh; background:var(--color-bg); color:var(--color-text);" data-screen-label="Expenses">
+
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <aside style="width:232px; flex:none; background:var(--color-surface); display:flex; flex-direction:column; padding:var(--space-4) var(--space-3); gap:2px; box-sizing:border-box;">
+      <a href="Overview.dc.html" style="text-decoration:none; color:inherit; font-family:var(--font-heading); font-size:19px; padding:6px var(--space-2); margin-bottom:var(--space-4);">Fieldbook</a>
+      <a href="Overview.dc.html" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--radius-md); text-decoration:none; font-size:14px; color:var(--color-text); opacity:0.75;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-6h4v6h3a1 1 0 0 0 1-1v-9"/></svg>Overview</a>
+      <a href="Expenses.dc.html" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--radius-md); text-decoration:none; font-size:14px; background:var(--color-accent-100); color:var(--color-accent-800); font-weight:600;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="3"/><path d="M3 10h18"/><circle cx="16.5" cy="14.5" r="1"/></svg>Expenses</a>
+      <a href="CheckIn.dc.html" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--radius-md); text-decoration:none; font-size:14px; color:var(--color-text); opacity:0.75;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16"/><path d="M8 3v4"/><path d="M16 3v4"/><polyline points="9 14 11 16 15 12"/></svg>Check-in</a>
+      <a href="LifeContext.dc.html" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--radius-md); text-decoration:none; font-size:14px; color:var(--color-text); opacity:0.75;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Life & Context</a>
+      <a href="History.dc.html" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--radius-md); text-decoration:none; font-size:14px; color:var(--color-text); opacity:0.75;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v4l3 2"/></svg>History</a>
+      <a href="Insights.dc.html" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--radius-md); text-decoration:none; font-size:14px; color:var(--color-text); opacity:0.75;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>Insights</a>
+      <a href="Explore.dc.html" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--radius-md); text-decoration:none; font-size:14px; color:var(--color-text); opacity:0.75;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 1 3.2 6.4L4 20l1.2-3.4A7.96 7.96 0 0 1 4 12z"/></svg>Explore</a>
+      <div style="flex:1;"></div>
+      <a href="Settings.dc.html" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--radius-md); text-decoration:none; font-size:14px; color:var(--color-text); opacity:0.75;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>Settings</a>
+      <button type="button" onClick="{{ logout }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--radius-md); border:none; background:none; text-align:left; cursor:pointer; font-size:14px; color:var(--color-text); opacity:0.75; font-family:var(--font-body);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out</button>
+    </aside>
+  </sc-if>
+
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; top:0; left:0; right:0; height:56px; background:var(--color-surface); display:flex; align-items:center; justify-content:space-between; padding:0 var(--space-3); z-index:20; box-sizing:border-box;">
+      <span style="font-family:var(--font-heading); font-size:17px;">Fieldbook</span>
+      <a href="Settings.dc.html" aria-label="Settings" style="display:flex; color:inherit;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg></a>
+    </div>
+    <nav style="position:fixed; bottom:0; left:0; right:0; height:66px; background:var(--color-surface); display:flex; align-items:center; justify-content:space-around; z-index:20; box-shadow:var(--shadow-lg); box-sizing:border-box;">
+      <a href="Overview.dc.html" style="display:flex; flex-direction:column; align-items:center; gap:2px; font-size:10px; color:var(--color-text); opacity:0.6; text-decoration:none;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-6h4v6h3a1 1 0 0 0 1-1v-9"/></svg>Overview</a>
+      <a href="Insights.dc.html" style="display:flex; flex-direction:column; align-items:center; gap:2px; font-size:10px; color:var(--color-text); opacity:0.6; text-decoration:none;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/></svg>Insights</a>
+      <button type="button" onClick="{{ toggleAddSheet }}" aria-label="Add a record" style="width:52px; height:52px; border-radius:999px; background:var(--color-accent); color:var(--color-bg); border:none; display:flex; align-items:center; justify-content:center; margin-top:-30px; box-shadow:var(--shadow-md); cursor:pointer;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      <a href="History.dc.html" style="display:flex; flex-direction:column; align-items:center; gap:2px; font-size:10px; color:var(--color-text); opacity:0.6; text-decoration:none;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v4l3 2"/></svg>History</a>
+      <a href="Explore.dc.html" style="display:flex; flex-direction:column; align-items:center; gap:2px; font-size:10px; color:var(--color-text); opacity:0.6; text-decoration:none;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 1 3.2 6.4L4 20l1.2-3.4A7.96 7.96 0 0 1 4 12z"/></svg>Explore</a>
+    </nav>
+    <sc-if value="{{ addSheetOpen }}">
+      <div class="dialog-backdrop" style="align-items:flex-end; padding:0; z-index:30;" onClick="{{ closeAddSheet }}">
+        <div class="dialog" style="width:100%; max-width:100%; border-radius:var(--radius-lg) var(--radius-lg) 0 0; box-sizing:border-box;" onClick="{{ stop }}">
+          <div class="dialog-title">Add a record</div>
+          <button type="button" class="btn btn-secondary btn-block" onClick="{{ openAddFromSheet }}" style="justify-content:flex-start;">Add expense</button>
+          <a href="CheckIn.dc.html" class="btn btn-secondary btn-block" style="justify-content:flex-start;">Check-in</a>
+          <a href="LifeContext.dc.html" class="btn btn-secondary btn-block" style="justify-content:flex-start;">Add life & context</a>
+          <button type="button" class="btn btn-ghost btn-block" onClick="{{ closeAddSheet }}" style="justify-content:center;">Cancel</button>
+        </div>
+      </div>
+    </sc-if>
+  </sc-if>
+
+  <main style="{{ mainStyle }}">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:var(--space-4); flex-wrap:wrap; margin-bottom:var(--space-5);">
+      <div>
+        <h1 style="font-size:30px; margin-bottom:4px;">Expenses</h1>
+        <p style="opacity:0.7; margin:0;">Every purchase you've logged, fastest entry first.</p>
+      </div>
+      <button type="button" class="btn btn-primary" onClick="{{ openAdd }}">Add expense<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+    </div>
+
+    <sc-if value="{{ hasAny }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-bottom:var(--space-4);">
+        <div style="position:relative; flex:1; min-width:200px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); opacity:0.5;"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input class="input" placeholder="Search merchant or category" value="{{ search }}" onChange="{{ onSearch }}" style="padding-left:36px;" />
+        </div>
+        <select class="input" value="{{ filterCategory }}" onChange="{{ onFilterCategory }}" style="max-width:220px;">
+          <sc-for list="{{ categoryFilterOptions }}" as="c" hint-placeholder-count="1"><option value="{{ c }}">{{ c }}</option></sc-for>
+        </select>
+      </div>
+
+      <sc-if value="{{ hasFiltered }}" hint-placeholder-val="{{ true }}">
+        <div class="card elev-sm" style="padding:0; overflow:hidden;">
+          <sc-for list="{{ items }}" as="e" hint-placeholder-count="5">
+            <div onClick="{{ e.openDetail }}" style="display:flex; align-items:center; gap:14px; padding:14px var(--space-3); border-bottom:1px solid var(--color-divider); cursor:pointer;">
+              <div style="flex:none; width:40px; height:40px; border-radius:999px; background:var(--color-accent-100); display:flex; align-items:center; justify-content:center; color:var(--color-accent-800); font-family:var(--font-heading); font-size:15px;">{{ e.initial }}</div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ e.merchant }}</div>
+                <div style="font-size:12px; opacity:0.6;">{{ e.category }} · {{ e.dateLabel }}</div>
+              </div>
+              <div style="font-family:var(--font-heading); font-size:16px; flex:none;">{{ e.amount }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ noFiltered }}">
+        <div class="card elev-sm" style="text-align:center; padding:var(--space-6);"><p class="card-body">No expenses match this filter.</p></div>
+      </sc-if>
+    </sc-if>
+
+    <sc-if value="{{ noAny }}" hint-placeholder-val="{{ false }}">
+      <div class="card elev-sm" style="align-items:center; text-align:center; padding:var(--space-8) var(--space-4); gap:var(--space-3);">
+        <h2>No expenses yet.</h2>
+        <p style="opacity:0.75; max-width:42ch;">Log spending as it happens — amount, category, merchant and date. It's the fastest way to build the history any analysis depends on.</p>
+        <button type="button" class="btn btn-primary" onClick="{{ openAdd }}">Add your first expense</button>
+      </div>
+    </sc-if>
+  </main>
+
+  <sc-if value="{{ addOpen }}">
+    <div class="dialog-backdrop" onClick="{{ closeAdd }}">
+      <div class="dialog" onClick="{{ stop }}">
+        <div class="dialog-title">Add expense</div>
+        <form onSubmit="{{ submitAdd }}" style="display:grid; gap:var(--space-3);">
+          <div class="field">
+            <label>Amount (₹)</label>
+            <input class="input" type="number" min="0" step="0.01" placeholder="0.00" value="{{ form.amount }}" onChange="{{ onAmount }}" autoFocus="{{ true }}" />
+            <sc-if value="{{ errors.amount }}"><p style="color:var(--color-accent-800); font-size:12px; margin:4px 0 0;">{{ errors.amount }}</p></sc-if>
+          </div>
+          <div class="field">
+            <label>Category</label>
+            <select class="input" value="{{ form.category }}" onChange="{{ onCategory }}">
+              <sc-for list="{{ categories }}" as="c" hint-placeholder-count="1"><option value="{{ c }}">{{ c }}</option></sc-for>
+            </select>
+          </div>
+          <div class="field">
+            <label>Merchant / description</label>
+            <input class="input" placeholder="e.g. Reliance Fresh" value="{{ form.merchant }}" onChange="{{ onMerchant }}" />
+          </div>
+          <div class="field">
+            <label>Date</label>
+            <input class="input" type="date" value="{{ form.date }}" onChange="{{ onDate }}" />
+          </div>
+          <div class="field">
+            <label>Note (optional)</label>
+            <input class="input" placeholder="Anything worth remembering" value="{{ form.note }}" onChange="{{ onNote }}" />
+          </div>
+          <div class="dialog-actions">
+            <button type="button" class="btn btn-secondary" onClick="{{ closeAdd }}">Cancel</button>
+            <button type="submit" class="btn btn-primary" disabled="{{ saving }}">{{ saveLabel }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ detailOpen }}">
+    <div class="dialog-backdrop" onClick="{{ closeDetail }}">
+      <div class="dialog" onClick="{{ stop }}">
+        <div class="dialog-title">{{ detail.merchant }}</div>
+        <div style="font-family:var(--font-heading); font-size:32px;">{{ detail.amount }}</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <span class="tag tag-accent">{{ detail.category }}</span>
+          <span class="tag tag-neutral">{{ detail.dateLong }}</span>
+        </div>
+        <sc-if value="{{ detail.hasNote }}"><p class="dialog-body">{{ detail.note }}</p></sc-if>
+        <div class="dialog-actions">
+          <button type="button" class="btn btn-secondary" onClick="{{ closeDetail }}">Close</button>
+          <button type="button" onClick="{{ requestDelete }}" style="border:1px solid oklch(0.6 0.14 30); color:oklch(0.42 0.15 25); background:oklch(0.96 0.03 25); border-radius:999px; padding:var(--space-2) calc(var(--space-3)*1.2); font-family:var(--font-heading); cursor:pointer;">Delete</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ deleteOpen }}">
+    <div class="dialog-backdrop" onClick="{{ cancelDelete }}">
+      <div class="dialog" onClick="{{ stop }}">
+        <div class="dialog-title">Delete this expense?</div>
+        <div class="dialog-body">This can't be undone. It will also be removed from History and future analysis.</div>
+        <div class="dialog-actions">
+          <button type="button" class="btn btn-secondary" onClick="{{ cancelDelete }}">Cancel</button>
+          <button type="button" onClick="{{ confirmDelete }}" style="border:none; color:var(--color-bg); background:oklch(0.5 0.16 27); border-radius:999px; padding:var(--space-2) calc(var(--space-3)*1.2); font-family:var(--font-heading); cursor:pointer;">Delete</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+class Component extends DCLogic {
+  state = {
+    isMobile: (typeof window !== 'undefined' && window.innerWidth <= 860), addSheetOpen: false,
+    addOpen: false, detailId: null, deleteId: null, saving: false,
+    form: { amount: '', category: '', merchant: '', date: '', note: '' }, errors: {},
+    filterCategory: 'All', search: ''
+  };
+
+  componentDidMount() {
+    if (!window.Store || !Store.requireAuth()) return;
+    this._onResize = () => this.setState({ isMobile: window.innerWidth <= 860 });
+    window.addEventListener('resize', this._onResize);
+    const cats = Store.Settings.get().categories;
+    this.setState({ form: { amount: '', category: cats[0], merchant: '', date: Store.todayISO(), note: '' } });
+    if (window.location.hash === '#add') { this.setState({ addOpen: true }); history.replaceState(null, '', window.location.pathname); }
+  }
+  componentWillUnmount() { if (this._onResize) window.removeEventListener('resize', this._onResize); }
+
+  renderVals() {
+    const s = this.state;
+    const cats = window.Store ? Store.Settings.get().categories : [];
+    const all = window.Store ? Store.Expenses.list() : [];
+    let filtered = all;
+    if (s.filterCategory !== 'All') filtered = filtered.filter(e => e.category === s.filterCategory);
+    if (s.search.trim()) {
+      const q = s.search.trim().toLowerCase();
+      filtered = filtered.filter(e => (e.merchant || '').toLowerCase().includes(q) || e.category.toLowerCase().includes(q));
+    }
+    const items = filtered.map(e => ({
+      merchant: e.merchant || e.category, category: e.category,
+      initial: (e.merchant || e.category).charAt(0).toUpperCase(),
+      dateLabel: Store.Fmt.relative(e.date), amount: Store.Money.format(e.amountPaise),
+      openDetail: () => this.setState({ detailId: e.id })
+    }));
+    const detailExp = s.detailId ? Store.Expenses.get(s.detailId) : null;
+    const detail = detailExp ? {
+      merchant: detailExp.merchant || detailExp.category, amount: Store.Money.format(detailExp.amountPaise, { decimals: true }),
+      category: detailExp.category, dateLong: Store.Fmt.date(detailExp.date, 'long'), hasNote: !!detailExp.note, note: detailExp.note
+    } : {};
+    return {
+      isDesktop: !s.isMobile, isMobile: s.isMobile,
+      mainStyle: 'flex:1; min-width:0; box-sizing:border-box; padding:' + (s.isMobile ? '72px 16px 100px' : '40px 48px 56px') + ';',
+      addSheetOpen: s.addSheetOpen,
+      toggleAddSheet: () => this.setState(st => ({ addSheetOpen: !st.addSheetOpen })),
+      closeAddSheet: () => this.setState({ addSheetOpen: false }),
+      openAddFromSheet: () => this.setState({ addSheetOpen: false, addOpen: true }),
+      stop: e => e.stopPropagation(),
+      logout: () => { Store.Session.logout(); window.location.href = 'Login.dc.html'; },
+      hasAny: all.length > 0, noAny: all.length === 0,
+      hasFiltered: filtered.length > 0, noFiltered: filtered.length === 0,
+      items, search: s.search, onSearch: e => this.setState({ search: e.target.value }),
+      filterCategory: s.filterCategory, onFilterCategory: e => this.setState({ filterCategory: e.target.value }),
+      categoryFilterOptions: ['All', ...cats],
+      categories: cats,
+      openAdd: () => this.setState({ addOpen: true, form: { amount: '', category: cats[0], merchant: '', date: Store.todayISO(), note: '' }, errors: {} }),
+      closeAdd: () => this.setState({ addOpen: false }),
+      addOpen: s.addOpen, form: s.form, errors: s.errors, saving: s.saving,
+      saveLabel: s.saving ? 'Saving…' : 'Save expense',
+      onAmount: e => this.setState(st => ({ form: Object.assign({}, st.form, { amount: e.target.value }) })),
+      onCategory: e => this.setState(st => ({ form: Object.assign({}, st.form, { category: e.target.value }) })),
+      onMerchant: e => this.setState(st => ({ form: Object.assign({}, st.form, { merchant: e.target.value }) })),
+      onDate: e => this.setState(st => ({ form: Object.assign({}, st.form, { date: e.target.value }) })),
+      onNote: e => this.setState(st => ({ form: Object.assign({}, st.form, { note: e.target.value }) })),
+      submitAdd: e => {
+        e.preventDefault();
+        const amt = parseFloat(s.form.amount);
+        const errors = {};
+        if (!amt || amt <= 0) errors.amount = 'Enter an amount greater than 0.';
+        if (!s.form.date) errors.date = 'Pick a date.';
+        if (Object.keys(errors).length) { this.setState({ errors }); return; }
+        this.setState({ saving: true });
+        setTimeout(() => {
+          Store.Expenses.add({ amountPaise: Store.Money.toPaise(amt), category: s.form.category, merchant: s.form.merchant.trim(), date: s.form.date, note: s.form.note.trim() });
+          this.setState({ saving: false, addOpen: false });
+        }, 300);
+      },
+      detailOpen: !!s.detailId, detail, closeDetail: () => this.setState({ detailId: null }),
+      requestDelete: () => this.setState({ deleteId: s.detailId, detailId: null }),
+      deleteOpen: !!s.deleteId, cancelDelete: () => this.setState({ deleteId: null }),
+      confirmDelete: () => { Store.Expenses.remove(s.deleteId); this.setState({ deleteId: null }); }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

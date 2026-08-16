@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/organic-d6e2c841-5da7-4830-a6f0-4d98a3fc81cf/styles.css">
+  <script src="_ds/organic-d6e2c841-5da7-4830-a6f0-4d98a3fc81cf/_ds_bundle.js"></script>
+  <script src="store.js"></script>
+  <style>body { margin: 0; } a { color: var(--color-accent-700); } a:hover { color: var(--color-accent-800); }</style>
+</helmet>
+<div style="background:var(--color-bg); color:var(--color-text); min-height:100vh; display:flex; flex-direction:column;">
+  <nav class="nav" style="max-width:1180px; width:100%; margin:0 auto; box-sizing:border-box;">
+    <a href="Landing.dc.html" class="nav-brand" style="text-decoration:none; color:inherit;">Fieldbook</a>
+  </nav>
+  <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:var(--space-4);">
+    <form onSubmit="{{ onSubmit }}" style="width:100%; max-width:400px; display:grid; gap:var(--space-4);">
+      <div>
+        <h2 style="margin-bottom:4px;">Sign in</h2>
+        <p style="opacity:0.7; font-size:14px; margin:0;">Welcome back to your history.</p>
+      </div>
+
+      <sc-if value="{{ formError }}">
+        <div class="tag tag-outline" style="display:flex; gap:8px; align-items:center; width:100%; box-sizing:border-box; padding:10px 14px; border-radius:var(--radius-md);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M10.3 3.9 1.8 18a1 1 0 0 0 .9 1.5h18.6a1 1 0 0 0 .9-1.5L13.7 3.9a1 1 0 0 0-1.7 0z"/><path d="M12 9v4"/><path d="M12 16.5h.01"/></svg>
+          <span>{{ formError }}</span>
+        </div>
+      </sc-if>
+
+      <div class="field">
+        <label for="li-email">Email</label>
+        <input class="input" id="li-email" type="email" placeholder="you@email.com" value="{{ email }}" onChange="{{ onEmail }}" autocomplete="email" />
+        <sc-if value="{{ errors.email }}"><p style="color:var(--color-accent-800); font-size:12px; margin:4px 0 0;">{{ errors.email }}</p></sc-if>
+      </div>
+
+      <div class="field">
+        <label for="li-pass">Password</label>
+        <div style="position:relative;">
+          <input class="input" id="li-pass" type="{{ passwordFieldType }}" placeholder="••••••••" value="{{ password }}" onChange="{{ onPassword }}" autocomplete="current-password" style="padding-right:40px;" />
+          <button type="button" aria-label="Toggle password visibility" onClick="{{ toggleShowPassword }}" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:var(--color-text); opacity:0.6; display:flex;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <sc-if value="{{ errors.password }}"><p style="color:var(--color-accent-800); font-size:12px; margin:4px 0 0;">{{ errors.password }}</p></sc-if>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" disabled="{{ loading }}" style="justify-content:center; padding:12px;">{{ submitLabel }}</button>
+
+      <p style="text-align:center; font-size:14px; margin:0;">New to Fieldbook? <a href="Signup.dc.html">Create account</a></p>
+    </form>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+class Component extends DCLogic {
+  state = { email: '', password: '', showPassword: false, errors: {}, loading: false, formError: null };
+
+  componentDidMount() {
+    if (window.Store && Store.Session.isAuthed()) {
+      window.location.href = Store.Onboarding.isComplete() ? 'Overview.dc.html' : 'Onboarding.dc.html';
+    }
+  }
+
+  validate() {
+    const errors = {};
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.state.email)) errors.email = 'Enter a valid email address.';
+    if (this.state.password.length < 6) errors.password = 'Password must be at least 6 characters.';
+    return errors;
+  }
+
+  renderVals() {
+    return {
+      email: this.state.email,
+      password: this.state.password,
+      passwordFieldType: this.state.showPassword ? 'text' : 'password',
+      errors: this.state.errors,
+      formError: this.state.formError,
+      loading: this.state.loading,
+      submitLabel: this.state.loading ? 'Signing in…' : 'Sign in',
+      onEmail: e => this.setState({ email: e.target.value }),
+      onPassword: e => this.setState({ password: e.target.value }),
+      toggleShowPassword: () => this.setState(s => ({ showPassword: !s.showPassword })),
+      onSubmit: e => {
+        e.preventDefault();
+        const errors = this.validate();
+        if (Object.keys(errors).length) { this.setState({ errors, formError: null }); return; }
+        this.setState({ errors: {}, formError: null, loading: true });
+        setTimeout(() => {
+          try {
+            Store.Session.login(this.state.email);
+            window.location.href = Store.Onboarding.isComplete() ? 'Overview.dc.html' : 'Onboarding.dc.html';
+          } catch (err) {
+            this.setState({ loading: false, formError: 'Something went wrong signing in. Check your connection and try again.' });
+          }
+        }, 500);
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

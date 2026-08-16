@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/organic-d6e2c841-5da7-4830-a6f0-4d98a3fc81cf/styles.css">
+  <script src="_ds/organic-d6e2c841-5da7-4830-a6f0-4d98a3fc81cf/_ds_bundle.js"></script>
+  <script src="store.js"></script>
+  <style>body { margin: 0; } a { color: var(--color-accent-700); } a:hover { color: var(--color-accent-800); }</style>
+</helmet>
+<div style="background:var(--color-bg); color:var(--color-text); min-height:100vh; display:flex; flex-direction:column;">
+  <nav class="nav" style="max-width:900px; width:100%; margin:0 auto; box-sizing:border-box;">
+    <span class="nav-brand">Fieldbook</span>
+    <button type="button" onClick="{{ skip }}" class="btn btn-ghost" style="margin-left:auto;">Skip for now</button>
+  </nav>
+
+  <div style="flex:1; display:flex; justify-content:center; padding:var(--space-4) var(--space-4) var(--space-8);">
+    <div style="width:100%; max-width:560px;">
+      <div style="display:flex; gap:6px; margin-bottom:var(--space-6);">
+        <div style="height:4px; flex:1; border-radius:999px; background:{{ dot1 }};"></div>
+        <div style="height:4px; flex:1; border-radius:999px; background:{{ dot2 }};"></div>
+        <div style="height:4px; flex:1; border-radius:999px; background:{{ dot3 }};"></div>
+      </div>
+
+      <sc-if value="{{ isStep1 }}">
+        <h6 style="color:var(--color-accent-700);">Step 1 of 3</h6>
+        <h2>A little context</h2>
+        <p style="opacity:0.75; margin-bottom:var(--space-4);">This only shapes what you track — it never changes how patterns are evaluated.</p>
+        <div style="display:grid; gap:var(--space-4);">
+          <div class="field">
+            <label>Income pattern</label>
+            <div class="seg" role="radiogroup" style="width:100%;">
+              <sc-for list="{{ incomeOptions }}" as="opt" hint-placeholder-count="3">
+                <label class="seg-opt" style="flex:1; justify-content:center;"><input type="radio" name="income" checked="{{ opt.checked }}" onChange="{{ opt.onChange }}" />{{ opt.label }}</label>
+              </sc-for>
+            </div>
+          </div>
+          <div class="field">
+            <label>Work context</label>
+            <div class="seg" role="radiogroup" style="width:100%;">
+              <sc-for list="{{ workOptions }}" as="opt" hint-placeholder-count="3">
+                <label class="seg-opt" style="flex:1; justify-content:center;"><input type="radio" name="work" checked="{{ opt.checked }}" onChange="{{ opt.onChange }}" />{{ opt.label }}</label>
+              </sc-for>
+            </div>
+          </div>
+          <div class="field">
+            <label>Household</label>
+            <div class="seg" role="radiogroup" style="width:100%;">
+              <sc-for list="{{ householdOptions }}" as="opt" hint-placeholder-count="3">
+                <label class="seg-opt" style="flex:1; justify-content:center;"><input type="radio" name="household" checked="{{ opt.checked }}" onChange="{{ opt.onChange }}" />{{ opt.label }}</label>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep2 }}">
+        <h6 style="color:var(--color-accent-700);">Step 2 of 3</h6>
+        <h2>What do you want to understand?</h2>
+        <p style="opacity:0.75; margin-bottom:var(--space-4);">Pick as many as apply — this only orders what you see, not what's evaluated.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <sc-for list="{{ focusOptions }}" as="opt" hint-placeholder-count="5">
+            <button type="button" onClick="{{ opt.toggle }}" style="border-radius:999px; padding:10px 16px; font-size:14px; cursor:pointer; border:1px solid var(--color-divider); background:{{ opt.bg }}; color:{{ opt.color }};">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep3 }}">
+        <h6 style="color:var(--color-accent-700);">Step 3 of 3</h6>
+        <h2>Daily check-in habits</h2>
+        <p style="opacity:0.75; margin-bottom:var(--space-4);">Choose what your 10-second daily check-in should ask about. You can change this later in Settings.</p>
+        <div style="display:grid; gap:var(--space-2);">
+          <sc-for list="{{ habitOptions }}" as="opt" hint-placeholder-count="5">
+            <label class="card" style="flex-direction:row; align-items:center; justify-content:space-between; cursor:pointer;">
+              <span>{{ opt.label }}</span>
+              <input type="checkbox" checked="{{ opt.checked }}" onChange="{{ opt.onChange }}" style="width:20px; height:20px; accent-color:var(--color-accent);" />
+            </label>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <div style="display:flex; justify-content:space-between; margin-top:var(--space-6);">
+        <button type="button" class="btn btn-secondary" onClick="{{ back }}" disabled="{{ backDisabled }}" style="{{ backVisibility }}">Back</button>
+        <button type="button" class="btn btn-primary" onClick="{{ next }}">{{ nextLabel }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+class Component extends DCLogic {
+  state = {
+    step: 1,
+    income: 'Salaried', work: 'Office', household: 'Living alone',
+    focus: { 'Everyday spending': true, 'Travel & trips': false, 'Work-life balance': false, 'Big purchases': false, 'Health & energy': false },
+    habits: Object.assign({}, (window.Store ? Store.DEFAULT_TRACKING : { sleep: true, exercise: true, meals: true, stress: true, workMode: true }))
+  };
+
+  componentDidMount() { if (window.Store) Store.requireAuth(); }
+
+  finish() {
+    Store.Onboarding.save({ income: this.state.income, work: this.state.work, household: this.state.household, focus: this.state.focus });
+    Store.Settings.save({ tracking: this.state.habits });
+    window.location.href = 'Overview.dc.html';
+  }
+
+  renderVals() {
+    const s = this.state;
+    const seg = (options, stateKey) => options.map(label => ({
+      label, checked: s[stateKey] === label, onChange: () => this.setState({ [stateKey]: label })
+    }));
+    const focusOptions = Object.keys(s.focus).map(label => ({
+      label, active: s.focus[label],
+      bg: s.focus[label] ? 'var(--color-accent)' : 'var(--color-bg)', color: s.focus[label] ? 'var(--color-bg)' : 'var(--color-text)',
+      toggle: () => this.setState(st => ({ focus: Object.assign({}, st.focus, { [label]: !st.focus[label] }) }))
+    }));
+    const habitLabels = { sleep: 'Sleep quality', exercise: 'Exercise', meals: 'Meals', stress: 'Stress level', workMode: 'Work mode (office / remote / off)' };
+    const habitOptions = Object.keys(habitLabels).map(key => ({
+      label: habitLabels[key], checked: !!s.habits[key],
+      onChange: () => this.setState(st => ({ habits: Object.assign({}, st.habits, { [key]: !st.habits[key] }) }))
+    }));
+    const dotColor = (n) => s.step >= n ? 'var(--color-accent)' : 'var(--color-divider)';
+    return {
+      isStep1: s.step === 1, isStep2: s.step === 2, isStep3: s.step === 3,
+      dot1: dotColor(1), dot2: dotColor(2), dot3: dotColor(3),
+      incomeOptions: seg(['Salaried', 'Variable', 'Mixed'], 'income'),
+      workOptions: seg(['Office', 'Remote', 'Hybrid'], 'work'),
+      householdOptions: seg(['Living alone', 'With family', 'With roommates'], 'household'),
+      focusOptions, habitOptions,
+      backDisabled: s.step === 1,
+      backVisibility: s.step === 1 ? 'visibility:hidden;' : '',
+      nextLabel: s.step === 3 ? 'Finish setup' : 'Continue',
+      back: () => this.setState(st => ({ step: Math.max(1, st.step - 1) })),
+      next: () => s.step === 3 ? this.finish() : this.setState(st => ({ step: st.step + 1 })),
+      skip: () => this.finish()
+    };
+  }
+}
+
+</script>
+</body>
+</html>
